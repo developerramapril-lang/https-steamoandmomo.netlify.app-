@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOMO BAY - Responsive</title>
+    <style>
+        :root {
+            --mango-yellow: #FFC324;
+            --off-white: #F9F9F9;
+            --light-black: #333333;
+            --border-line: #444444;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--off-white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--mango-yellow);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            color: black;
+            margin: 0;
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 0px #bcbcbc, 2px 2px 0px #9c9c9c;
+        }
+
+        /* Layout Container */
+        .main-container {
+            display: flex;
+            padding-top: 70px;
+            height: calc(100vh - 70px);
+            flex-direction: row; /* Default for Desktop */
+        }
+
+        /* Sidebar - Scrollable */
+        nav {
+            width: 250px;
+            background-color: var(--mango-yellow);
+            overflow-y: auto;
+            border-right: 1px solid var(--border-line);
+            flex-shrink: 0;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            padding: 18px;
+            color: black;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        /* Main Content Area */
+        main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quote {
+            margin-top: 20vh;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: var(--light-black);
+            opacity: 0.6;
+        }
+
+        /* Tabs - Responsive Grid */
+        .tab-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet */
+            gap: 15px;
+            width: 100%;
+            max-width: 700px;
+            margin-top: 20px;
+        }
+
+        .tab-card {
+            background-color: white;
+            padding: 30px 10px;
+            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        /* MOBILE & TABLET ADAPTATIONS */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column; /* Stack Menu on top of Content */
+                height: auto;
+            }
+
+            nav {
+                width: 100%;
+                height: 120px; /* Limit height so it doesn't take the whole screen */
+                border-right: none;
+                border-bottom: 1px solid var(--border-line);
+            }
+
+            .menu-list {
+                display: flex; /* Horizontal scroll for menu items */
+                flex-direction: row;
+            }
+
+            .menu-item {
+                flex-shrink: 0;
+                border-bottom: none;
+                border-right: 1px solid var(--border-line);
+                padding: 15px 25px;
+                display: flex;
+                align-items: center;
+            }
+
+            h1 { font-size: 1.4rem; }
+
+            .tab-container {
+                grid-template-columns: 1fr; /* 1 column for mobile */
+            }
+
+            .quote { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="https://img.icons8.com/plasticine/100/dumpling.png" alt="Momo Logo">
+        </div>
+        <h1>MOMO BAY</h1>
+    </header>
+
+    <div class="main-container">
+        <nav>
+            <ul class="menu-list">
+                <li class="menu-item" onclick="showTabs('Steam Momo')">Steam Momo</li>
+                <li class="menu-item" onclick="showTabs('Fried Momo')">Fried Momo</li>
+                <li class="menu-item" onclick="showTabs('Cheesy Momo')">Cheesy Momo</li>
+                <li class="menu-item" onclick="showTabs('Veg Momo')">Veg Momo</li>
+                <li class="menu-item" onclick="showTabs('Paneer Momo')">Paneer Momo</li>
+                <li class="menu-item" onclick="showTabs('Tandoori Momo')">Tandoori Momo</li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <div id="content-display">
+                <div class="quote">"lets bite"</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showTabs(category) {
+            const display = document.getElementById('content-display');
+            display.innerHTML = `
+                <h2 style="margin: 20px 0; color: #333; font-size: 1.2rem;">${category} Selection</h2>
+                <div class="tab-container">
+                    <div class="tab-card">Classic ${category}</div>
+                    <div class="tab-card">Spicy ${category}</div>
+                    <div class="tab-card">Family Pack</div>
+                    <div class="tab-card">Chef's Special</div>
+                </div>
+            `;
+            // Scroll to the tabs on mobile after selection
+            if(window.innerWidth <= 768) {
+                window.scrollTo({ top: 150, behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body>
+</html>
