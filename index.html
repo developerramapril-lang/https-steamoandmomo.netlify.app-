@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Steamo & Momo Bay</title>
+    <title>Steamo & Momo Bay - Ultra Responsive</title>
     <style>
         :root {
             --mango-yellow: #FFC324;
             --off-white: #F9F9F9;
             --light-black: #333333;
-            --border-line: #444444;
+            --border-line: #000000;
             --header-height: 70px;
         }
 
+        /* Essential Mobile Reset */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
+        
         body, html {
             margin: 0; padding: 0; width: 100%; min-height: 100%;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--off-white);
-            color: var(--light-black);
+            overflow-x: hidden;
         }
 
         /* --- Header --- */
@@ -27,65 +28,114 @@
             background-color: var(--mango-yellow);
             height: var(--header-height);
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; position: fixed; top: 0; width: 100%; z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            padding: 0 15px; position: fixed; top: 0; width: 100%; z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .header-left { display: flex; align-items: center; }
-        .logo { width: 40px; height: 40px; background: white; border-radius: 50%; margin-right: 10px; overflow: hidden; }
-        .logo img { width: 100%; }
+        .logo { width: 35px; height: 35px; background: white; border-radius: 50%; margin-right: 8px; overflow: hidden; }
+        .logo img { width: 100%; height: auto; }
 
         h1 {
-            color: black; margin: 0; font-weight: 900; font-size: 1.2rem;
-            text-transform: uppercase; text-shadow: 1px 1px 0px #bcbcbc;
+            color: black; margin: 0; font-weight: 900; 
+            font-size: clamp(0.85rem, 4.5vw, 1.4rem);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            text-shadow: 1px 1px 0px #bcbcbc;
         }
 
-        .header-actions { display: flex; gap: 10px; }
-        .btn-small { 
-            background: black; color: white; border: none; padding: 8px 12px; 
-            border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold;
+        .header-actions { display: flex; gap: 6px; }
+        .btn-nav { 
+            background: black; color: white; border: none; padding: 7px 12px; 
+            border-radius: 8px; cursor: pointer; font-size: 0.7rem; font-weight: bold;
         }
 
-        /* --- Layout --- */
+        /* --- Main Layout --- */
         .main-container { display: flex; margin-top: var(--header-height); min-height: calc(100vh - var(--header-height)); }
 
+        /* --- THE FIXED MENU AREA --- */
         nav {
-            width: 240px; background: var(--mango-yellow); border-right: 2px solid var(--border-line);
-            position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); overflow-y: auto;
+            width: 260px; background: var(--mango-yellow); border-right: 2px solid var(--border-line);
+            position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height));
+            z-index: 1000;
         }
 
-        .menu-item { padding: 15px 20px; font-weight: 700; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-item { 
+            padding: 20px; font-weight: 700; cursor: pointer; 
+            border-bottom: 1px solid rgba(0,0,0,0.1); transition: 0.2s;
+        }
+        .menu-item:active { background: rgba(0,0,0,0.1); }
 
-        main { flex-grow: 1; padding: 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        /* --- Content Area --- */
+        main { flex: 1; padding: 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        #display-area { width: 100%; max-width: 900px; text-align: center; }
 
-        /* --- Card & Forms --- */
-        .white-card {
-            background: white; padding: 30px; border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px;
-            text-align: center; margin-top: 20px;
+        .quote { font-size: 2.5rem; font-style: italic; opacity: 0.4; margin-top: 25vh; }
+
+        /* --- Food Grid --- */
+        .tab-container { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; width: 100%; margin-top: 20px; 
         }
 
-        .input-group { margin-bottom: 15px; text-align: left; }
-        input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin-top: 5px; }
+        .food-card { 
+            background: white; padding: 25px; border-radius: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid #eee;
+        }
 
         .btn-mango {
-            background: var(--mango-yellow); color: black; border: none; width: 100%;
-            padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 10px;
+            background: var(--mango-yellow); color: black; border: none; 
+            width: 100%; padding: 15px; border-radius: 12px; 
+            font-weight: 800; cursor: pointer; margin-top: 10px;
         }
 
-        /* --- Tabs / Food --- */
-        .tab-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; width: 100%; max-width: 800px; }
-        .food-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; }
-        .price-tag { color: #d32f2f; font-weight: bold; display: block; margin: 10px 0; }
-
-        /* --- Mobile --- */
+        /* --- MOBILE REFINEMENT (The Fix) --- */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            nav { width: 100%; height: auto; border-right: none; border-bottom: 2px solid var(--border-line); position: relative; top: 0; }
-            .menu-list { display: flex; overflow-x: auto; }
-            .menu-item { flex-shrink: 0; border-bottom: none; border-right: 1px solid rgba(0,0,0,0.1); }
-            h1 { font-size: 1rem; }
+            
+            nav { 
+                width: 100%; height: 60px; /* Precise height for mobile menu */
+                position: sticky; top: var(--header-height); 
+                border-right: none; border-bottom: 2px solid var(--border-line);
+                background: var(--mango-yellow);
+            }
+
+            .menu-list { 
+                display: flex; 
+                overflow-x: auto; 
+                height: 100%;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Hide scrollbar for clean look */
+            }
+            .menu-list::-webkit-scrollbar { display: none; }
+
+            .menu-item { 
+                flex: 0 0 auto; 
+                width: auto;
+                padding: 0 25px; 
+                height: 100%;
+                display: flex;
+                align-items: center;
+                border-bottom: none; 
+                border-right: 1px solid rgba(0,0,0,0.1); 
+                scroll-snap-align: center;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+
+            main { padding: 20px 10px; }
+            .tab-container { grid-template-columns: 1fr; }
         }
+
+        /* Admin/Login Cards */
+        .white-card {
+            background: white; padding: 30px; border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            width: 92%; max-width: 400px; margin: 20px auto;
+        }
+        input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin: 10px 0; font-size: 16px; }
+
     </style>
 </head>
 <body>
@@ -96,165 +146,161 @@
         <h1>Steamo & Momo Bay</h1>
     </div>
     <div class="header-actions">
-        <button class="btn-small" onclick="showCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
-        <button class="btn-small" onclick="showLogin('user')">Login</button>
-        <button class="btn-small" style="background:var(--mango-yellow); color:black" onclick="showLogin('admin')">Admin</button>
+        <button class="btn-nav" onclick="showCart()">🛒 <span id="cart-count">0</span></button>
+        <button class="btn-nav" onclick="showLogin('user')">User</button>
+        <button class="btn-nav" style="background:white; color:black; border:1px solid black" onclick="showLogin('admin')">Admin</button>
     </div>
 </header>
 
 <div class="main-container">
-    <nav id="sidebar">
-        <ul class="menu-list" id="menu-list">
+    <nav>
+        <ul class="menu-list">
             <li class="menu-item" onclick="showCategory('Steam Momo')">Steam Momo</li>
             <li class="menu-item" onclick="showCategory('Fried Momo')">Fried Momo</li>
+            <li class="menu-item" onclick="showCategory('Cheesy Momo')">Cheesy Momo</li>
             <li class="menu-item" onclick="showCategory('Veg Momo')">Veg Momo</li>
             <li class="menu-item" onclick="showCategory('Paneer Momo')">Paneer Momo</li>
+            <li class="menu-item" onclick="showCategory('Tandoori Momo')">Tandoori Momo</li>
         </ul>
     </nav>
 
-    <main id="main-content">
+    <main>
         <div id="display-area">
-            <h2 class="quote">"lets bite"</h2>
+            <div class="quote">"lets bite"</div>
         </div>
     </main>
 </div>
 
 <script>
-    // --- APP DATA ---
-    const ADMIN_CRED = { user: "admin", pass: "1234" };
+    const ADMIN_PASS = "1234";
     let cart = [];
-    let registeredUsers = []; // Simulation of database
-    const prices = { "Classic": 120, "Spicy": 140, "Family Pack": 450, "Chef's Special": 180 };
+    let users = []; 
+    const priceList = { "Classic": 120, "Spicy": 150, "Family Pack": 480, "Chef's Special": 200 };
 
-    // --- NAVIGATION LOGIC ---
-    function showCategory(cat) {
-        let html = `<h2 style="text-shadow: 1px 1px 0px #bcbcbc;">— ${cat} —</h2><div class="tab-container">`;
-        ["Classic", "Spicy", "Family Pack", "Chef's Special"].forEach(item => {
-            html += `
+    function showCategory(name) {
+        let content = `<h2 style="margin:10px 0; text-transform:uppercase;">${name}</h2><div class="tab-container">`;
+        Object.keys(priceList).forEach(item => {
+            content += `
                 <div class="food-card">
-                    <h3>${item} ${cat}</h3>
-                    <span class="price-tag">₹${prices[item]}</span>
-                    <button class="btn-mango" onclick="addToCart('${item} ${cat}', ${prices[item]})">Add to Cart</button>
+                    <h3>${item} ${name}</h3>
+                    <p style="color:#e67e22; font-weight:bold; font-size:1.3rem;">₹${priceList[item]}</p>
+                    <button class="btn-mango" onclick="addToCart('${item} ${name}', ${priceList[item]})">Add to Cart</button>
                 </div>`;
         });
-        html += `</div>`;
-        document.getElementById('display-area').innerHTML = html;
+        content += `</div>`;
+        document.getElementById('display-area').innerHTML = content;
+        
+        // Mobile-specific: Scroll content into view when menu is clicked
+        if(window.innerWidth <= 768) {
+            window.scrollTo({top: 130, behavior: 'smooth'});
+        }
     }
 
-    // --- CART LOGIC ---
-    function addToCart(name, price) {
-        cart.push({ name, price });
+    function addToCart(item, price) {
+        cart.push({item, price});
         document.getElementById('cart-count').innerText = cart.length;
-        alert(name + " added to cart!");
     }
 
     function showCart() {
-        if (cart.length === 0) {
-            document.getElementById('display-area').innerHTML = "<h2>Your cart is empty!</h2>";
+        if(cart.length === 0) {
+            document.getElementById('display-area').innerHTML = "<h3>Cart is empty</h3>";
             return;
         }
-        let total = cart.reduce((sum, item) => sum + item.price, 0);
-        let html = `<div class="white-card" style="max-width:600px"><h2>Order Summary</h2><ul style="text-align:left">`;
-        cart.forEach(item => html += `<li>${item.name} - ₹${item.price}</li>`);
-        html += `</ul><hr><h3>Total: ₹${total}</h3>
-            <button class="btn-mango" onclick="payWithUPI()">Pay with UPI (PayPal/PhonePe)</button>
-            <button class="btn-mango" style="background:black; color:white; margin-top:10px" onclick="placeCOD()">Cash on Delivery</button>
-        </div>`;
-        document.getElementById('display-area').innerHTML = html;
-    }
-
-    function payWithUPI() {
-        // Redirect logic to UPI (simulated via UPI Intent link)
-        window.location.href = "upi://pay?pa=your-id@upi&pn=MomoBay&am=" + cart.reduce((sum, item) => sum + item.price, 0);
-    }
-
-    function placeCOD() {
-        const orderNum = Math.floor(Math.random() * 100000);
+        let total = cart.reduce((s, i) => s + i.price, 0);
+        let list = cart.map(i => `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;"><span>${i.item}</span> <b>₹${i.price}</b></div>`).join('');
+        
         document.getElementById('display-area').innerHTML = `
             <div class="white-card">
-                <h2 style="color:green">Order Placed!</h2>
-                <p>Order #: ${orderNum}</p>
-                <p>Payment: Cash on Delivery</p>
-                <button class="btn-mango" onclick="location.reload()">Back to Home</button>
+                <h2>Cart Details</h2>
+                <div style="text-align:left; margin-bottom:15px;">${list}</div>
+                <h3>Total Amount: ₹${total}</h3>
+                <button class="btn-mango" onclick="payUPI(${total})">Pay Now (UPI)</button>
+                <button class="btn-mango" style="background:black; color:white; margin-top:10px;" onclick="payCOD(${total})">Cash on Delivery</button>
+            </div>`;
+    }
+
+    function payUPI(amt) {
+        window.location.href = `upi://pay?pa=momo@upi&pn=MomoBay&am=${amt}&cu=INR`;
+    }
+
+    function payCOD(amt) {
+        const id = Math.floor(10000 + Math.random() * 90000);
+        document.getElementById('display-area').innerHTML = `
+            <div class="white-card">
+                <h2 style="color:green;">Order Success!</h2>
+                <p>Order ID: <b>#${id}</b></p>
+                <p>Total: <b>₹${amt}</b></p>
+                <button class="btn-mango" onclick="location.reload()">Back to Menu</button>
             </div>`;
         cart = [];
-        document.getElementById('cart-count').innerText = 0;
+        document.getElementById('cart-count').innerText = "0";
     }
 
-    // --- LOGIN & ADMIN ---
-    function showLogin(type) {
+    function showLogin(mode) {
         document.getElementById('display-area').innerHTML = `
             <div class="white-card">
-                <h1>${type.toUpperCase()} LOGIN</h1>
-                <input type="text" id="l-user" placeholder="Username">
-                <input type="password" id="l-pass" placeholder="Password">
-                <button class="btn-mango" onclick="handleLogin('${type}')">SIGN IN</button>
+                <h2 style="text-transform:uppercase;">${mode} Login</h2>
+                <input type="text" id="u" placeholder="Username">
+                <input type="password" id="p" placeholder="Password">
+                <button class="btn-mango" onclick="doLogin('${mode}')">Sign In</button>
             </div>`;
     }
 
-    function handleLogin(type) {
-        const u = document.getElementById('l-user').value;
-        const p = document.getElementById('l-pass').value;
-
-        if (type === 'admin') {
-            if (u === ADMIN_CRED.user && p === ADMIN_CRED.pass) {
-                showAdminDashboard();
-            } else { alert("Invalid Admin Credentials"); }
+    function doLogin(mode) {
+        const user = document.getElementById('u').value;
+        const pass = document.getElementById('p').value;
+        if(mode === 'admin') {
+            if(user === 'admin' && pass === ADMIN_PASS) showAdminDash();
+            else alert("Error: Wrong Admin Login");
         } else {
-            // Check against simulated registered users
-            const userExists = registeredUsers.find(user => user.username === u && user.password === p);
-            if (userExists) { showUserDashboard(u); } else { alert("User not found. Please contact admin."); }
+            const found = users.find(x => x.u === user && x.p === pass);
+            if(found) showUserDash(found.u);
+            else alert("User not found!");
         }
     }
 
-    function showAdminDashboard() {
+    function showAdminDash() {
         document.getElementById('display-area').innerHTML = `
-            <div class="white-card" style="max-width:500px">
-                <h2>Admin Portal</h2>
-                <button class="btn-mango" onclick="showAddUser()">ADD NEW USER</button>
-                <div id="user-list" style="margin-top:20px">
-                    ${registeredUsers.map(u => `<div style="background:var(--mango-yellow); padding:10px; margin:5px; border-radius:5px">${u.name} (${u.username})</div>`).join('')}
+            <div class="white-card">
+                <h1>Admin Panel</h1>
+                <button class="btn-mango" onclick="showCreateUser()">+ Create New User</button>
+                <div style="margin-top:20px; text-align:left;">
+                    ${users.map(u => `<div style="background:#eee; padding:10px; border-radius:10px; margin:5px 0;">👤 ${u.u}</div>`).join('')}
                 </div>
             </div>`;
     }
 
-    function showAddUser() {
+    function showCreateUser() {
         document.getElementById('display-area').innerHTML = `
             <div class="white-card">
-                <h2>Create User</h2>
-                <input type="text" id="reg-name" placeholder="Full Name">
-                <input type="text" id="reg-user" placeholder="Username">
-                <input type="password" id="reg-pass" placeholder="Password">
-                <input type="email" id="reg-email" placeholder="Gmail Address">
-                <button class="btn-mango" onclick="finalizeUser()">CREATE USER</button>
-                <div id="reg-status"></div>
+                <h2>New User</h2>
+                <input type="text" id="ru" placeholder="Username">
+                <input type="password" id="rp" placeholder="Password">
+                <input type="email" id="re" placeholder="Gmail Address">
+                <button class="btn-mango" onclick="saveUser()">Create User</button>
+                <div id="msg"></div>
             </div>`;
     }
 
-    function finalizeUser() {
-        const name = document.getElementById('reg-name').value;
-        const username = document.getElementById('reg-user').value;
-        const password = document.getElementById('reg-pass').value;
-        const email = document.getElementById('reg-email').value;
-
-        if(name && username && password && email.includes("@gmail.com")) {
-            registeredUsers.push({name, username, password, email});
-            document.getElementById('reg-status').innerHTML = "<p style='color:green; font-weight:bold'>Account Created Successfully!</p>";
-            setTimeout(showAdminDashboard, 2000);
+    function saveUser() {
+        const u = document.getElementById('ru').value;
+        const p = document.getElementById('rp').value;
+        const e = document.getElementById('re').value;
+        if(u && p && e.includes("@gmail.com")) {
+            users.push({u, p, e});
+            document.getElementById('msg').innerHTML = "<p style='color:green; font-weight:bold;'>Success!</p>";
+            setTimeout(showAdminDash, 1000);
         } else {
-            document.getElementById('reg-status').innerHTML = "<p style='color:red; font-weight:bold'>Failed: Invalid Data or Gmail</p>";
+            document.getElementById('msg').innerHTML = "<p style='color:red;'>Error: Check details.</p>";
         }
     }
 
-    function showUserDashboard(username) {
+    function showUserDash(name) {
         document.getElementById('display-area').innerHTML = `
-            <div class="white-card" style="max-width:600px">
-                <h2>Welcome, ${username}!</h2>
-                <p>Your Recent Orders will appear here.</p>
-                <div style="text-align:left; background:#eee; padding:15px; border-radius:10px">
-                    <b>No recent orders found.</b><br>
-                    Go back to the menu to place your first order!
-                </div>
+            <div class="white-card">
+                <h1>Welcome, ${name}</h1>
+                <p>Status: Logged In</p>
+                <button class="btn-mango" onclick="location.reload()">Logout</button>
             </div>`;
     }
 </script>
