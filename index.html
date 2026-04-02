@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MOMO BAY - Professional Responsive</title>
+    <title>Steamo & Momo Bay</title>
     <style>
         :root {
             --mango-yellow: #FFC324;
@@ -13,18 +13,11 @@
             --header-height: 70px;
         }
 
-        /* Prevent unwanted horizontal scrolling */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--off-white);
             color: var(--light-black);
         }
@@ -33,242 +26,237 @@
         header {
             background-color: var(--mango-yellow);
             height: var(--header-height);
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; position: fixed; top: 0; width: 100%; z-index: 1000;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        .logo {
-            width: 45px;
-            height: 45px;
-            background-color: white;
-            border-radius: 50%;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .logo img { width: 80%; height: auto; }
+        .header-left { display: flex; align-items: center; }
+        .logo { width: 40px; height: 40px; background: white; border-radius: 50%; margin-right: 10px; overflow: hidden; }
+        .logo img { width: 100%; }
 
         h1 {
-            color: black;
-            margin: 0;
-            font-weight: 900;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 0px #bcbcbc, 2px 2px 0px #9c9c9c;
+            color: black; margin: 0; font-weight: 900; font-size: 1.2rem;
+            text-transform: uppercase; text-shadow: 1px 1px 0px #bcbcbc;
         }
 
-        /* --- Main Layout --- */
-        .main-container {
-            display: flex;
-            margin-top: var(--header-height);
-            min-height: calc(100vh - var(--header-height));
+        .header-actions { display: flex; gap: 10px; }
+        .btn-small { 
+            background: black; color: white; border: none; padding: 8px 12px; 
+            border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold;
         }
 
-        /* --- Sidebar Navigation --- */
+        /* --- Layout --- */
+        .main-container { display: flex; margin-top: var(--header-height); min-height: calc(100vh - var(--header-height)); }
+
         nav {
-            width: 260px;
-            background-color: var(--mango-yellow);
-            border-right: 2px solid var(--border-line);
-            flex-shrink: 0;
-            position: sticky;
-            top: var(--header-height);
-            height: calc(100vh - var(--header-height));
-            overflow-y: auto;
+            width: 240px; background: var(--mango-yellow); border-right: 2px solid var(--border-line);
+            position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); overflow-y: auto;
         }
 
-        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-item { padding: 15px 20px; font-weight: 700; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.1); }
 
-        .menu-item {
-            padding: 20px 25px;
-            color: black;
-            font-weight: 700;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            transition: background 0.2s;
-            display: block;
+        main { flex-grow: 1; padding: 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+        /* --- Card & Forms --- */
+        .white-card {
+            background: white; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px;
+            text-align: center; margin-top: 20px;
         }
 
-        .menu-item:hover { background-color: rgba(255,255,255,0.2); }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin-top: 5px; }
 
-        /* --- Main Content Area --- */
-        main {
-            flex-grow: 1;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
+        .btn-mango {
+            background: var(--mango-yellow); color: black; border: none; width: 100%;
+            padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 10px;
         }
 
-        #content-display {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 50vh; /* Keeps it vertically centered but allows growth */
-        }
+        /* --- Tabs / Food --- */
+        .tab-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; width: 100%; max-width: 800px; }
+        .food-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; }
+        .price-tag { color: #d32f2f; font-weight: bold; display: block; margin: 10px 0; }
 
-        .quote {
-            font-size: clamp(2rem, 8vw, 3.5rem); /* Dynamically scales text */
-            font-style: italic;
-            color: var(--light-black);
-            opacity: 0.5;
-            text-align: center;
-            margin: auto;
-        }
-
-        /* --- Grid Tabs --- */
-        .tab-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .tab-card {
-            background-color: white;
-            padding: 40px 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            font-weight: 800;
-            text-align: center;
-            border: 1px solid #ddd;
-            transition: transform 0.2s;
-        }
-
-        .tab-card:active { transform: scale(0.95); }
-
-        /* --- MEDIA QUERIES (Mobile & Tablet) --- */
-        @media (max-width: 992px) {
-            nav { width: 200px; }
-            h1 { font-size: 1.3rem; }
-        }
-
+        /* --- Mobile --- */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-
-            nav {
-                width: 100%;
-                height: auto;
-                position: sticky;
-                top: var(--header-height);
-                border-right: none;
-                border-bottom: 2px solid var(--border-line);
-                z-index: 999;
-            }
-
-            .menu-list {
-                display: flex;
-                overflow-x: auto; /* Horizontal swipe menu */
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .menu-item {
-                flex-shrink: 0;
-                padding: 15px 20px;
-                border-bottom: none;
-                border-right: 1px solid rgba(0,0,0,0.1);
-                scroll-snap-align: start;
-                font-size: 0.9rem;
-            }
-
-            main { padding: 20px 15px; }
-
-            .tab-container {
-                grid-template-columns: 1fr; /* Stack tabs on mobile */
-                gap: 15px;
-            }
-
-            .quote { font-size: 2.2rem; }
-        }
-
-        /* Landscape / Rotation Fix */
-        @media (max-height: 500px) and (orientation: landscape) {
-            nav { height: 60px; }
-            .quote { margin-top: 10px; font-size: 1.8rem; }
-            .main-container { min-height: auto; }
+            nav { width: 100%; height: auto; border-right: none; border-bottom: 2px solid var(--border-line); position: relative; top: 0; }
+            .menu-list { display: flex; overflow-x: auto; }
+            .menu-item { flex-shrink: 0; border-bottom: none; border-right: 1px solid rgba(0,0,0,0.1); }
+            h1 { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="https://img.icons8.com/plasticine/100/dumpling.png" alt="Momo Logo">
-        </div>
-        <h1>MOMO BAY</h1>
-    </header>
-
-    <div class="main-container">
-        <nav>
-            <ul class="menu-list">
-                <li class="menu-item" onclick="showTabs('Steam Momo')">Steam Momo</li>
-                <li class="menu-item" onclick="showTabs('Fried Momo')">Fried Momo</li>
-                <li class="menu-item" onclick="showTabs('Cheesy Momo')">Cheesy Momo</li>
-                <li class="menu-item" onclick="showTabs('Veg Momo')">Veg Momo</li>
-                <li class="menu-item" onclick="showTabs('Paneer Momo')">Paneer Momo</li>
-                <li class="menu-item" onclick="showTabs('Tandoori Momo')">Tandoori Momo</li>
-            </ul>
-        </nav>
-
-        <main id="main-content">
-            <div id="content-display">
-                <div class="quote">"lets bite"</div>
-            </div>
-        </main>
+<header>
+    <div class="header-left">
+        <div class="logo"><img src="https://img.icons8.com/plasticine/100/dumpling.png"></div>
+        <h1>Steamo & Momo Bay</h1>
     </div>
+    <div class="header-actions">
+        <button class="btn-small" onclick="showCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+        <button class="btn-small" onclick="showLogin('user')">Login</button>
+        <button class="btn-small" style="background:var(--mango-yellow); color:black" onclick="showLogin('admin')">Admin</button>
+    </div>
+</header>
 
-    <script>
-        function showTabs(category) {
-            const display = document.getElementById('content-display');
-            
-            // Smoother transition: clear and update
-            display.style.opacity = "0";
-            
-            setTimeout(() => {
-                display.innerHTML = `
-                    <h2 style="margin: 10px 0 25px 0; color: #000; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px;">
-                        — ${category} —
-                    </h2>
-                    <div class="tab-container">
-                        <div class="tab-card">Classic ${category}</div>
-                        <div class="tab-card">Spicy ${category}</div>
-                        <div class="tab-card">Family Pack</div>
-                        <div class="tab-card">Chef's Special</div>
-                    </div>
-                `;
-                display.style.opacity = "1";
-                display.style.transition = "opacity 0.4s ease";
+<div class="main-container">
+    <nav id="sidebar">
+        <ul class="menu-list" id="menu-list">
+            <li class="menu-item" onclick="showCategory('Steam Momo')">Steam Momo</li>
+            <li class="menu-item" onclick="showCategory('Fried Momo')">Fried Momo</li>
+            <li class="menu-item" onclick="showCategory('Veg Momo')">Veg Momo</li>
+            <li class="menu-item" onclick="showCategory('Paneer Momo')">Paneer Momo</li>
+        </ul>
+    </nav>
 
-                // Auto-scroll logic for mobile
-                if(window.innerWidth <= 768) {
-                    const headerOffset = 130;
-                    const elementPosition = display.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    <main id="main-content">
+        <div id="display-area">
+            <h2 class="quote">"lets bite"</h2>
+        </div>
+    </main>
+</div>
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }, 100);
+<script>
+    // --- APP DATA ---
+    const ADMIN_CRED = { user: "admin", pass: "1234" };
+    let cart = [];
+    let registeredUsers = []; // Simulation of database
+    const prices = { "Classic": 120, "Spicy": 140, "Family Pack": 450, "Chef's Special": 180 };
+
+    // --- NAVIGATION LOGIC ---
+    function showCategory(cat) {
+        let html = `<h2 style="text-shadow: 1px 1px 0px #bcbcbc;">— ${cat} —</h2><div class="tab-container">`;
+        ["Classic", "Spicy", "Family Pack", "Chef's Special"].forEach(item => {
+            html += `
+                <div class="food-card">
+                    <h3>${item} ${cat}</h3>
+                    <span class="price-tag">₹${prices[item]}</span>
+                    <button class="btn-mango" onclick="addToCart('${item} ${cat}', ${prices[item]})">Add to Cart</button>
+                </div>`;
+        });
+        html += `</div>`;
+        document.getElementById('display-area').innerHTML = html;
+    }
+
+    // --- CART LOGIC ---
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        document.getElementById('cart-count').innerText = cart.length;
+        alert(name + " added to cart!");
+    }
+
+    function showCart() {
+        if (cart.length === 0) {
+            document.getElementById('display-area').innerHTML = "<h2>Your cart is empty!</h2>";
+            return;
         }
-    </script>
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        let html = `<div class="white-card" style="max-width:600px"><h2>Order Summary</h2><ul style="text-align:left">`;
+        cart.forEach(item => html += `<li>${item.name} - ₹${item.price}</li>`);
+        html += `</ul><hr><h3>Total: ₹${total}</h3>
+            <button class="btn-mango" onclick="payWithUPI()">Pay with UPI (PayPal/PhonePe)</button>
+            <button class="btn-mango" style="background:black; color:white; margin-top:10px" onclick="placeCOD()">Cash on Delivery</button>
+        </div>`;
+        document.getElementById('display-area').innerHTML = html;
+    }
 
+    function payWithUPI() {
+        // Redirect logic to UPI (simulated via UPI Intent link)
+        window.location.href = "upi://pay?pa=your-id@upi&pn=MomoBay&am=" + cart.reduce((sum, item) => sum + item.price, 0);
+    }
+
+    function placeCOD() {
+        const orderNum = Math.floor(Math.random() * 100000);
+        document.getElementById('display-area').innerHTML = `
+            <div class="white-card">
+                <h2 style="color:green">Order Placed!</h2>
+                <p>Order #: ${orderNum}</p>
+                <p>Payment: Cash on Delivery</p>
+                <button class="btn-mango" onclick="location.reload()">Back to Home</button>
+            </div>`;
+        cart = [];
+        document.getElementById('cart-count').innerText = 0;
+    }
+
+    // --- LOGIN & ADMIN ---
+    function showLogin(type) {
+        document.getElementById('display-area').innerHTML = `
+            <div class="white-card">
+                <h1>${type.toUpperCase()} LOGIN</h1>
+                <input type="text" id="l-user" placeholder="Username">
+                <input type="password" id="l-pass" placeholder="Password">
+                <button class="btn-mango" onclick="handleLogin('${type}')">SIGN IN</button>
+            </div>`;
+    }
+
+    function handleLogin(type) {
+        const u = document.getElementById('l-user').value;
+        const p = document.getElementById('l-pass').value;
+
+        if (type === 'admin') {
+            if (u === ADMIN_CRED.user && p === ADMIN_CRED.pass) {
+                showAdminDashboard();
+            } else { alert("Invalid Admin Credentials"); }
+        } else {
+            // Check against simulated registered users
+            const userExists = registeredUsers.find(user => user.username === u && user.password === p);
+            if (userExists) { showUserDashboard(u); } else { alert("User not found. Please contact admin."); }
+        }
+    }
+
+    function showAdminDashboard() {
+        document.getElementById('display-area').innerHTML = `
+            <div class="white-card" style="max-width:500px">
+                <h2>Admin Portal</h2>
+                <button class="btn-mango" onclick="showAddUser()">ADD NEW USER</button>
+                <div id="user-list" style="margin-top:20px">
+                    ${registeredUsers.map(u => `<div style="background:var(--mango-yellow); padding:10px; margin:5px; border-radius:5px">${u.name} (${u.username})</div>`).join('')}
+                </div>
+            </div>`;
+    }
+
+    function showAddUser() {
+        document.getElementById('display-area').innerHTML = `
+            <div class="white-card">
+                <h2>Create User</h2>
+                <input type="text" id="reg-name" placeholder="Full Name">
+                <input type="text" id="reg-user" placeholder="Username">
+                <input type="password" id="reg-pass" placeholder="Password">
+                <input type="email" id="reg-email" placeholder="Gmail Address">
+                <button class="btn-mango" onclick="finalizeUser()">CREATE USER</button>
+                <div id="reg-status"></div>
+            </div>`;
+    }
+
+    function finalizeUser() {
+        const name = document.getElementById('reg-name').value;
+        const username = document.getElementById('reg-user').value;
+        const password = document.getElementById('reg-pass').value;
+        const email = document.getElementById('reg-email').value;
+
+        if(name && username && password && email.includes("@gmail.com")) {
+            registeredUsers.push({name, username, password, email});
+            document.getElementById('reg-status').innerHTML = "<p style='color:green; font-weight:bold'>Account Created Successfully!</p>";
+            setTimeout(showAdminDashboard, 2000);
+        } else {
+            document.getElementById('reg-status').innerHTML = "<p style='color:red; font-weight:bold'>Failed: Invalid Data or Gmail</p>";
+        }
+    }
+
+    function showUserDashboard(username) {
+        document.getElementById('display-area').innerHTML = `
+            <div class="white-card" style="max-width:600px">
+                <h2>Welcome, ${username}!</h2>
+                <p>Your Recent Orders will appear here.</p>
+                <div style="text-align:left; background:#eee; padding:15px; border-radius:10px">
+                    <b>No recent orders found.</b><br>
+                    Go back to the menu to place your first order!
+                </div>
+            </div>`;
+    }
+</script>
 </body>
 </html>
